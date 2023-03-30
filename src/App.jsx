@@ -17,13 +17,13 @@ const App = () => {
     setInputList("");
   };
 
-  const deleteItems = (id) =>{
+  const deleteItems = (id) => {
     setItems((oldItems) => {
       return oldItems.filter((arrElem, index) => {
-        return index !== id; 
-      })
-    })
-}
+        return index !== id;
+      });
+    });
+  };
 
   return (
     <>
@@ -36,20 +36,22 @@ const App = () => {
             type="text"
             placeholder="Add a Items"
             value={inputList}
-            onChange={itemEvent} 
+            onChange={itemEvent}
             required
           />
           <button onClick={listOfItems}> + </button>
-
-          {Items.map((itemval, index) => {
-            return <ToDoLists 
-            key={index} 
-            id={index} 
-            text={itemval} 
-            onSelect = {deleteItems}
-            />;
-          })}
-
+          <ol>
+            {Items.map((itemval, index) => {
+              return (
+                <ToDoLists
+                  key={index}
+                  id={index}
+                  text={itemval}
+                  onSelect={deleteItems}
+                />
+              );
+            })}
+          </ol>
         </div>
       </div>
     </>
